@@ -24,10 +24,10 @@ const onScroll = () => {
         </Header>
         <transition name="fade" mode="out-in">
             <main class="app-main flex-1 flex">
-                <div ref="page" class="flex-1 page-container" @scroll="onScroll">
+                <div ref="page" class="flex-1 page-container px-2" @scroll="onScroll">
                     <slot></slot>
                 </div>
-                <div class="pt-5 pl-2 more">
+                <div class="pt-5 px-2 more ">
                     <UCard>
                         <template #header>
                             <div class="text-sm">

@@ -38,11 +38,18 @@ watch(() => router.currentRoute.value, (newValue, oldValue) => {
 </script>
 <template>
     <div class="header-com w-full">
-        <UHorizontalNavigation :links="links" class="justify-center pc-navigation">
-            <template #default="{ link }">
-                <span class="group-hover:text-primary relative">{{ link.label }}</span>
-            </template>
-        </UHorizontalNavigation>
+        <div class="pc-navigation w-full flex items-center justify-center">
+            <ULink to="https://flytsuki.pages.dev" target="_blank">
+                <UAvatar size="sm" src="/images/logo.jpg" class="mr-5" />
+            </ULink>
+
+            <UHorizontalNavigation :links="links" style="width: auto;">
+                <template #default="{ link }">
+                    <span class="group-hover:text-primary relative">{{ link.label }}</span>
+                </template>
+            </UHorizontalNavigation>
+        </div>
+
         <div class="mobile-navigation flex items-center justify-center">
             <div class="title">{{ websiteStore.title }}</div>
             <UButton icon="material-symbols:list" color="gray" class="menu" @click="isOpen = true" />

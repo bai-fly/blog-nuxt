@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 import { getArticlePageAsync, getCategoryChildrenAsync } from '~/api/articleSerevice';
 import { type ArticleCategory, type Article } from '~/types/entities';
-
+import ArticleList from '~/components/ArticleList.vue';
 const route = useRoute()
 // console.log('index111路由参数', route.params.id)
 const pageIndex = ref(1)
@@ -87,17 +87,7 @@ watch(() => route.query.c, async (newVal) => {
                 </div>
             </template>
             <template v-else>
-                <div v-for="item in list" :key="item.id">
-                    <div class="py-2">
-                        <ULink active-class="text-primary"
-                            inactive-class="dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-200"
-                            :to="'/detail/' + item.id">{{ item.title }}</ULink>
-                        <div class="text-gray-500 text-sm">
-                            发布时间: {{ item.createTime }}
-                        </div>
-                    </div>
-                    <UDivider />
-                </div>
+                <ArticleList :list="list" />
             </template>
             <!-- {{ categorys }} -->
 

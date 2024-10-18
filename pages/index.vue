@@ -1,5 +1,6 @@
 <script lang="ts" setup>
 import { getArticlePageAsync } from '~/api/articleSerevice';
+import ArticleList from '~/components/ArticleList.vue';
 import type { Article } from '~/types/entities';
 const websiteStore = useWebsiteStore();
 websiteStore.title = '首页'
@@ -35,6 +36,11 @@ watch(() => route.query.pageIndex, async (newVal) => {
     }
     await loadData();
 })
+// const {
+//     public: {
+//         googleAdsense
+//     }
+// } = useRuntimeConfig();
 </script>
 <template>
     <div class="py-2">
@@ -46,20 +52,8 @@ watch(() => route.query.pageIndex, async (newVal) => {
                 </div>
             </template>
             <template v-else>
-                <div v-for="item in list" :key="item.id">
-                    <div class="py-2">
-                        <ULink active-class="text-primary"
-                            inactive-class="dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-200"
-                            :to="'/detail/' + item.id">{{ item.title }}</ULink>
-                        <div class="text-gray-500 text-sm">
-                            发布时间: {{ item.createTime }}
-                        </div>
-                    </div>
-                    <UDivider />
-                </div>
+                <ArticleList :list="list" />
             </template>
-
-
         </UCard>
         <div class="flex justify-center py-4">
             <UPagination v-model="pageIndex" :page-count="pageSize" :total="totalCount" show-last show-first

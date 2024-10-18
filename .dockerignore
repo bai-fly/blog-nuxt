@@ -1,0 +1,6 @@
+# 剔除nodule_modules
+node_modules
+# 剔除掉 Dockerfile
+Dockerfile
+# 剔除 .dockerignore
+.dockerignore
