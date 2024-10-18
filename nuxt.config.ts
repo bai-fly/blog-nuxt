@@ -41,5 +41,12 @@ export default defineNuxtConfig({
     }
   },
 
-  modules: ['@nuxt/ui', '@nuxtjs/mdc', '@pinia/nuxt']
+  modules: ['@nuxt/ui', '@nuxtjs/mdc', '@pinia/nuxt'],
+  mdc: {
+    remarkPlugins: {
+      emoji: {
+        src: 'remark-emoji'
+      }
+    }
+  },
 })

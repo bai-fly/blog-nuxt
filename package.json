@@ -17,6 +17,7 @@
     "nuxt": "^3.13.0",
     "qrcode": "^1.5.4",
     "qs": "^6.13.0",
+    "remark-emoji": "^5.0.1",
     "vue": "latest",
     "vue-router": "latest"
   },

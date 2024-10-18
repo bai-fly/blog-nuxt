@@ -41,5 +41,10 @@ watch(() => router.currentRoute.value, (newValue) => {
                 </ULink>
             </div>
         </template>
+        <div class="flex items-center text-sm text-gray-500 mt-3">
+            <UIcon name="material-symbols:attach-email" />
+            flytsuki@gmail.com
+
+        </div>
     </div>
 </template>

@@ -25,6 +25,9 @@ dependencies:
   qs:
     specifier: ^6.13.0
     version: 6.13.0
+  remark-emoji:
+    specifier: ^5.0.1
+    version: 5.0.1
   vue:
     specifier: latest
     version: 3.5.12
