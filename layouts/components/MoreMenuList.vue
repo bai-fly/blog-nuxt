@@ -21,6 +21,10 @@ const moreLinks = [
         label: '二维码生成',
         path: '/more/qrcode',
     },
+    {
+        label: '黄金价格',
+        path: '/more/time-line-data/1',
+    },
 ]
 const router = useRouter();
 watch(() => router.currentRoute.value, (newValue) => {

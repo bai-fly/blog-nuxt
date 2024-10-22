@@ -17,3 +17,8 @@ export interface PageResult<T> {
     hasPrevPages: boolean,
     items: T[],
 }
+
+export interface KeyValueData<K, V> {
+    key: K,
+    value: V
+}
