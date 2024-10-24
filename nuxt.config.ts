@@ -37,9 +37,10 @@ export default defineNuxtConfig({
   },
   runtimeConfig: {
     public: {
-      apiPrefix: 'https://flytsuki.top',
-    }
+      apiPrefix: 'https://api.flytsuki.top',
+    },
   },
+
 
   modules: ['@nuxt/ui', '@nuxtjs/mdc', '@pinia/nuxt'],
   mdc: {

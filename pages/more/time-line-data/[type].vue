@@ -18,9 +18,10 @@ res[1].forEach(x => {
     monthLabels.push(x.key.substring(0, 10))
     monthValues.push(x.value);
 })
+const map: Record<number, string> = { 1: '当日金价', 2: '当日银价' }
 const timeOptions: EChartsOption = {
     title: {
-        text: '当日金价'
+        text: map[type] ?? ''
     },
     tooltip: {
         trigger: 'axis',
