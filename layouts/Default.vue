@@ -1,6 +1,8 @@
 <script setup lang="ts">
 import Header from './components/Header.vue';
 import MoreMenuList from './components/MoreMenuList.vue';
+const router = useRouter()
+const { $mitt } = useNuxtApp();
 const showBackTop = ref(false);
 const page = ref<Element>()
 const toTop = () => {
@@ -13,9 +15,20 @@ const toTop = () => {
 const onScroll = () => {
     showBackTop.value = (page.value?.scrollTop ?? 0) > 200
 }
+const q = ref('')
+const showError = ref(false)
+const onSearch = () => {
+    // $mitt.emit('onSearch', q.value)
+    if (q.value) {
+        router.push('/search/' + q.value)
+    } else {
+        showError.value = true;
+    }
+}
 </script>
 <template>
     <div class="default-layout w-full flex flex-col">
+
         <Header class="header shadow-sm">
             <div class="mt-5">
                 <div>更多功能</div>
@@ -28,6 +41,18 @@ const onScroll = () => {
                     <slot></slot>
                 </div>
                 <div class="pt-5 px-2 more ">
+                    <div class="pb-2">
+                        <UInput required v-model="q" name="q" placeholder="Search..."
+                            icon="i-heroicons-magnifying-glass-20-solid" autocomplete="off"
+                            :ui="{ icon: { trailing: { pointer: '' } } }" @keydown.enter.stop="onSearch"
+                            @input="showError = false">
+                            <template #trailing>
+                                <UButton v-show="q !== ''" color="gray" variant="link"
+                                    icon="i-heroicons-x-mark-20-solid" :padded="false" @click="q = ''" />
+                            </template>
+                        </UInput>
+                        <div v-show="q.length === 0 && showError" class="text-red-500 text-sm text-center">请输入内容</div>
+                    </div>
                     <UCard>
                         <template #header>
                             <div class="text-sm">
@@ -60,13 +85,21 @@ const onScroll = () => {
     }
 }
 
+// @media (prefers-color-scheme: dark) {
+
+//     .header-com {
+//         // background-color: var(--color-primary-DEFAULT);
+//         background-color: red;
+//     }
+// }
+
 .default-layout {
     height: 100vh;
 
     .header {
         position: fixed;
         top: 0;
-        background-color: #fff;
+        background-color: var(--color-primary-DEFAULT);
     }
 
     .app-main {

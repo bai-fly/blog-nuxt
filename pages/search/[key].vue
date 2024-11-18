@@ -1,57 +1,22 @@
 <script lang="ts" setup>
 import { getArticlePageAsync } from '~/api/articleSerevice';
-import ArticleList from '~/components/ArticleList.vue';
 import type { Article } from '~/types/entities';
-// const { $mitt } = useNuxtApp();
-const websiteStore = useWebsiteStore();
-websiteStore.title = '首页'
-useSeoMeta({
-    title: websiteStore.title,
-    keywords: '博客',
-    description: '一个个人博客'
-})
 
 const route = useRoute()
+console.log(route.params.key)
 const pageIndex = ref(1)
 const loading = ref(true)
-if (route.query.pageIndex) {
-    pageIndex.value = Number(route.query.pageIndex)
-}
 const list = ref<Article[]>([])
 const pageSize = 15;
 const totalCount = ref(0)
-
 const loadData = async () => {
     loading.value = true;
-    const res = await getArticlePageAsync({ pageIndex: pageIndex.value, pageSize });
+    const res = await getArticlePageAsync({ pageIndex: pageIndex.value, pageSize, key: route.params.key as string });
     list.value = res.items;
     totalCount.value = res.totalCount;
     loading.value = false
 }
 await loadData();
-watch(() => route.query.pageIndex, async (newVal) => {
-    if (newVal) {
-        pageIndex.value = Number(newVal);
-    } else {
-        pageIndex.value = 1;
-    }
-    await loadData();
-})
-// onMounted(() => {
-//     console.log('onMounted-->')
-//     $mitt.on('onSearch', (e) => {
-//         console.log('onSearch-->', e)
-//     })
-// })
-// onBeforeUnmount(() => {
-//     console.log('卸载了')
-//     $mitt.off('onSearch')
-// })
-// const {
-//     public: {
-//         googleAdsense
-//     }
-// } = useRuntimeConfig();
 </script>
 <template>
     <div class="py-2">
@@ -63,7 +28,8 @@ watch(() => route.query.pageIndex, async (newVal) => {
                 </div>
             </template>
             <template v-else>
-                <ArticleList :list="list" />
+                <div class="text-gray-500 text-center" v-if="list.length === 0">未查询到数据</div>
+                <ArticleList v-else :list="list" />
             </template>
         </UCard>
         <div class="flex justify-center py-4">
