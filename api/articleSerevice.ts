@@ -13,7 +13,7 @@ export async function getCategoryChildrenAsync(categoryId: string) {
     return res.data;
 }
 export async function getArticleAsync(id: string) {
-    const { data } = await useFetchGet('/api/article/' + id)
+    const { data } = await useFetchGet('/api/article/get-by-id/' + id)
     const res = data.value as HttpResponse<Article>
     return res.data;
 }

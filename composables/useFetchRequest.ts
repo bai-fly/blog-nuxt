@@ -41,7 +41,7 @@ function createUseFetchRequest(method: HttpMethod) {
             }
         } = useRuntimeConfig();
 
-
+        console.log(apiPrefix)
 
         const requestUrl = new URL(
             url,

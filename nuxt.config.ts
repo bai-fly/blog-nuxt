@@ -41,7 +41,8 @@ export default defineNuxtConfig({
   },
   runtimeConfig: {
     public: {
-      apiPrefix: 'https://api.flytsuki.top',
+      // apiPrefix: 'https://api.flytsuki.top',
+      apiPrefix: 'http://127.0.0.1:8080'
     },
   },
 
